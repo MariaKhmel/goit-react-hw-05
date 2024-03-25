@@ -1,14 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import css from "./App.module.css";
-
-// import Navigation from "../Navigation/Navigation";
-// import HomePage from "../../pages/HomePage/HomePage";
-// import MoviesPage from "../../pages/MoviesPage/MoviesPage";
-// import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
-// import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
-// import MovieCast from "../MovieCast/MovieCast";
-// import MovieReviews from "../MovieReviews/MovieReviews";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navigation = lazy(() => import("../Navigation/Navigation"));
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
@@ -25,6 +19,13 @@ const MovieReviews = lazy(() => import("../MovieReviews/MovieReviews"));
 const App = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        closeOnClick
+        rtl={false}
+        theme="dark"
+      />
       <div className={css.container}>
         <Navigation />
 

@@ -1,7 +1,9 @@
+import css from "./MoviesPage.module.css";
 import { useSearchParams } from "react-router-dom";
 import getMovieByName from "../../components/getMovieByName";
 import { useState, useEffect } from "react";
 import MovieList from "../../components/MovieList/MovieList";
+import { toast } from "react-toastify";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,7 +33,7 @@ const MoviesPage = () => {
     const form = e.currentTarget;
     const query = form.elements.input.value;
     if (query === "") {
-      alert("Please enter a search word");
+      toast("Please enter a search word");
     }
     updateQueryString(query);
     form.reset();
@@ -40,7 +42,7 @@ const MoviesPage = () => {
   return (
     <main>
       <form onSubmit={onFormSubmit}>
-        <input type="text" name="input" />
+        <input type="text" name="input" className={css.input} />
         <button type="submit">Search</button>
       </form>
       <MovieList movies={moviesByQuery} />

@@ -1,6 +1,6 @@
 import { Link, useParams, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import css from "./MovieDetailsPage.module.css";
 import getMovieDetails from "../../components/getMovieDetails";
 
 const MovieDetailsPage = () => {
@@ -32,22 +32,28 @@ const MovieDetailsPage = () => {
   return (
     <main>
       <Link to={backLinkHref}>🠔 Go back</Link>
-      <div>
+      <div className={css.filmCard}>
         <img src={imgPath} alt={title} width="200" height="300" />
-        <h2>{title}</h2>
-        <p>User score : {roundedPopularity}%</p>
-        <h3>Overview</h3>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <ul>
-          {genres &&
-            genres.map((genre) => <li key={genre.id}>{genre.name}</li>)}
-        </ul>
+        <div>
+          <h2 className={css.title}>{title}</h2>
+          <p className={css.filmDescr}>User score : {roundedPopularity}%</p>
+          <h3 className={css.title}>Overview</h3>
+          <p className={css.filmDescr}>{overview}</p>
+          <h3 className={css.title}>Genres</h3>
+          <ul className={css.genresList}>
+            {genres &&
+              genres.map((genre) => <li key={genre.id}>{genre.name}</li>)}
+          </ul>
+        </div>
       </div>
-      <div>
+      <div className={css.additionalInfo}>
         <p>Additional Information</p>
-        <Link to="cast">Cast</Link>
-        <Link to="reviews">Reviews</Link>
+        <Link to="cast" className={css.additionalInfoLink}>
+          Cast
+        </Link>
+        <Link to="reviews" className={css.additionalInfoLink}>
+          Reviews
+        </Link>
       </div>
 
       <Outlet />

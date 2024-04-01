@@ -8,6 +8,7 @@ const MovieDetailsPage = () => {
   const [movieData, setMovieData] = useState([]);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? "/movies";
+  console.log(location);
 
   useEffect(() => {
     const handleSearch = async () => {
@@ -48,10 +49,18 @@ const MovieDetailsPage = () => {
       </div>
       <div className={css.additionalInfo}>
         <p>Additional Information</p>
-        <Link to="cast" className={css.additionalInfoLink}>
+        <Link
+          to="cast"
+          className={css.additionalInfoLink}
+          state={{ from: backLinkHref }}
+        >
           Cast
         </Link>
-        <Link to="reviews" className={css.additionalInfoLink}>
+        <Link
+          to="reviews"
+          className={css.additionalInfoLink}
+          state={{ from: backLinkHref }}
+        >
           Reviews
         </Link>
       </div>
